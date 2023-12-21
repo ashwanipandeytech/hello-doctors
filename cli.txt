@@ -1,0 +1,4 @@
+ng generate module blog/ --routing=true && ng generate component blog/blog --flat&&
+
+
+ 
