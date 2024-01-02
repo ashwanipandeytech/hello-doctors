@@ -36,7 +36,8 @@
                 </div>
               </div>
               <div class="form-search-btn">
-                <button class="btn" type="submit">Search</button>
+                <a class="btn" [routerLink]="['/patient/search']">Search</a>
+                <!-- <button class="btn" type="submit">Search</button> -->
               </div>
             </form>
           </div>
@@ -64,16 +65,16 @@
   <section class="specialities-section-one">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 aos" data-aos="fade-up">
+        <div class="col-md-6">
           <div class="section-header-one section-header-slider">
             <h2 class="section-title">Specialities</h2>
           </div>
         </div>
-        <div class="col-md-6 aos" data-aos="fade-up">
+        <div class="col-md-6">
           <div class="owl-nav slide-nav-1 text-end nav-control"></div>
         </div>
       </div>
-      <!-- <div class="owl-carousel specialities-slider-one owl-theme aos" data-aos="fade-up">
+      <div class="owl-carousel specialities-slider-one owl-theme">
         <div class="item">
           <div class="specialities-item">
             <div class="specialities-img">
@@ -131,11 +132,11 @@
           </div>
         </div>
       </div>
-      <div class="specialities-btn aos" data-aos="fade-up">
+      <div class="specialities-btn">
         <a href="search.html" class="btn">
           See All Specialities
         </a>
-      </div> -->
+      </div>
     </div>
   </section>
   <!-- /Specialities Section -->
@@ -144,16 +145,16 @@
   <section class="doctors-section">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 aos" data-aos="fade-up">
+        <div class="col-md-6">
           <div class="section-header-one section-header-slider">
             <h2 class="section-title">Best Doctors</h2>
           </div>
         </div>
-        <div class="col-md-6 aos" data-aos="fade-up">
+        <div class="col-md-6">
           <div class="owl-nav slide-nav-2 text-end nav-control"></div>
         </div>
       </div>
-      <div class="owl-carousel doctor-slider-one owl-theme aos" data-aos="fade-up">
+      <div class="owl-carousel doctor-slider-one owl-theme">
 
         <!-- Doctor Item -->
         <div class="item">
@@ -326,7 +327,7 @@
   <!-- /Doctors Section -->
 
   <!-- Pricing -->
-  <section class="pricing-section">
+  <section class="pricing-section d-none">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center aos" data-aos="fade-up">
@@ -667,7 +668,7 @@
   <!-- /Articles Section -->
 
   <!-- App Section -->
-  <section class="app-section">
+  <section class="app-section d-none">
     <div class="container">
       <div class="app-bg">
         <div class="row align-items-center">
@@ -699,7 +700,7 @@
   <!-- /App Section -->
 
   <!-- FAQ Section -->
-  <section class="faq-section">
+  <section class="faq-section d-none">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
