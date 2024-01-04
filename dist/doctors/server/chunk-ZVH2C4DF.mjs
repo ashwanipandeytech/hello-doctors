@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{U as s,d as o,i,ja as r}from"./chunk-YTJUO4HN.mjs";import"./chunk-KRLCULJA.mjs";var a=[],m=(()=>{let t=class t{};t.\u0275fac=function(n){return new(n||t)},t.\u0275mod=i({type:t}),t.\u0275inj=o({imports:[r.forChild(a),r]});let e=t;return e})();var F=(()=>{let t=class t{};t.\u0275fac=function(n){return new(n||t)},t.\u0275mod=i({type:t}),t.\u0275inj=o({imports:[s,m]});let e=t;return e})();export{F as AccountModule};
