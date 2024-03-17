@@ -15,19 +15,28 @@
                             <div class="login-header">
                                 <h3>Login <span>Doccure</span></h3>
                             </div>
-                            <form action="https://doccure.dreamstechnologies.com/html/template/index.html">
+                            <form >
+
+
                                 <div class="mb-3 form-focus">
-                                    <input type="email" class="form-control floating">
+                                    <input type="text" class="form-control floating"  id="emailAddr" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  required   #emailAddr="ngModel" autocomplete="new-emailAddr" >
                                     <label class="focus-label">Email</label>
                                 </div>
                                 <div class="mb-3 form-focus">
-                                    <input type="password" class="form-control floating">
-                                    <label class="focus-label">Password</label>
+                                    <input type="password" class="form-control floating" type="password" name="Password" id="password"  [(ngModel)]="password" [ngModelOptions]="{standalone: true}" autocomplete="new-password" required #passWord="ngModel">
+                                    <label class="focus-label">Create Password</label>
                                 </div>
+
+
+
+                                
+                              
+
+
                                 <div class="text-end">
                                     <a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
                                 </div>
-                                <button class="btn btn-primary w-100 btn-lg login-btn" type="submit">Login</button>
+                                <button class="btn btn-primary w-100 btn-lg login-btn" (click)="submitForm()">Login</button>
                                 <div class="login-or">
                                     <span class="or-line"></span>
                                     <span class="span-or">or</span>
@@ -40,7 +49,7 @@
                                         <a href="#" class="btn btn-google w-100"><i class="fab fa-google me-1"></i> Login</a>
                                     </div>
                                 </div>
-                                <div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div>
+                                <div class="text-center dont-have">Don’t have an account? <a href="account/register">Register</a></div>
                             </form>
                         </div>
                     </div>
