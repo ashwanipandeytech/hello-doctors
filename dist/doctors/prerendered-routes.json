@@ -4,6 +4,8 @@
     "/404",
     "/about-us",
     "/account",
+    "/account/login",
+    "/account/register",
     "/blogs",
     "/blogs/blog-details",
     "/contact-us",
