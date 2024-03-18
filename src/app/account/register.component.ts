@@ -32,9 +32,6 @@ export class RegisterComponent implements OnInit {
   ;
   submitForm() {
 
-
-
-
     let requestPayload = {
       name: this.name,
       mobileNo: this.mobileNo,
