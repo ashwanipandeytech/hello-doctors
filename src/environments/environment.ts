@@ -6,7 +6,7 @@ export const environment = {
                 NGVERSION: 'v16',
                 Auth_Key: 'eyJhdXRoIjoiOWVkMjMwNzY1ZWU0MmExNGYxNzk0YjY5M2M1MmQ3NzUiLCJESVNUUklCVVRFRF9UT0tFTiI6IjU5ZWMzZDU4NDIxYjdmYzJiOWJkZjBkODU4MmQ2MWI0In0=',
                
-                FRONT_END_API_URL: 'https://hellodoctorsbackend.webhandler.in/',
+                FRONT_END_API_URL: 'https://hellodoctorsbackend.webhandler.in/api/',
                 API_URL: 'https://hellodoctorsbackend.webhandler.in/admin/',
                 DOMAIN: 'https://hellodoctorsbackend.webhandler.in/',  
                 FIT_IN_200: 'fit-in/200x200/',
