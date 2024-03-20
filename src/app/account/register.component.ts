@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
     }
 
 
-    this.dataService.callApi(requestPayload, 'register')
+    this.dataService.callApi(requestPayload, 'register',true)
       .pipe(takeUntil(this.destroyed$))
       .subscribe(
         (data) => {
