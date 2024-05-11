@@ -5,7 +5,7 @@ export interface Commonresponseobject {
   application: string;
   data: any;
   message: any;
-  error: string;
+  error: any;
   LatestAppVersion: string;
   oemProductCode: string;
   productCode: string;
@@ -42,6 +42,7 @@ export interface Commonresponseobject {
   promoexist:any;
   orderStatus:any;
   isCancelDisable:any;
+  
 }
 
 

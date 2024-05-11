@@ -5,6 +5,7 @@ import { Globals } from '@src/app/shared/globals';
 import { DataService } from '@src/app/services/data-service.service'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -40,38 +41,7 @@ export class RegisterComponent implements OnInit {
       userType:(this.isDoctor)?'D':'P'
     }
 
-    var specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    var mobileRegex = /^[6-9]\d{9}$/;
-
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-
-    if (requestPayload.name == '') {
-
-      this.toastr.error('Please enter your name.');
-      return false;
-    } else if (specialChars.test(requestPayload.name)) {
-
-      this.toastr.error('Name should not contain special characters.', 'Error');
-      return false;
-    }
-
-    else if (!mobileRegex.test(requestPayload.mobileNo)) {
-      // If mobile number is not in Indian mobile number format, show toastr notification
-      this.toastr.error('Please enter a valid  mobile number.', 'Error');
-      return false;
-    }
-
-    // Check if the email matches the email regular expression
-    else if (!emailRegex.test(requestPayload.email)) {
-      this.toastr.error('Please enter a valid  email address.', 'Error');
-      return false;
-    }
-    else if (requestPayload.password == '') {
-
-      this.toastr.error('Password should not be blank.');
-      return false;
-    }
+   
 
 
     this.dataService.callApi(requestPayload, 'register',true)
@@ -85,12 +55,14 @@ export class RegisterComponent implements OnInit {
           } else {
             this.toastr.error('Error in registration');
           }
+         
         },
-        (error) => {
-
-          console.error('API Error:', error);
-          this.toastr.error('An error occurred while processing your request.');
-          this.isLoading = false; // Set isLoading to false to handle loading state
+        (error:any) => {
+          const errorDetails = error.error;
+       
+        //  console.error('API Error:', error,errorDetails.message);
+          this.toastr.error(errorDetails.message);
+        
         }
       );
 
