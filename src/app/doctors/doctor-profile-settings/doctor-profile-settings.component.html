@@ -74,8 +74,16 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-0">
-                                    <label class="mb-2">Date of Birth</label>
-                                    <input type="text" class="form-control" [(ngModel)]="formData.dob" [ngModelOptions]="{standalone: true}" required>
+                                  
+                                   
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Date of Birth</mat-label>
+                                        <input matInput [matDatepicker]="dobpicker" [(ngModel)]="formData.dob"  [ngModelOptions]="{standalone: true}">
+                                        <mat-hint>MM/DD/YYYY</mat-hint>
+                                        <mat-datepicker-toggle matIconSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #dobpicker></mat-datepicker>
+                                      </mat-form-field>
+                               
                                 </div>
                             </div>
                         </div>

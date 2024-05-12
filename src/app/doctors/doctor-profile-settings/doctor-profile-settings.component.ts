@@ -16,7 +16,26 @@ import moment from 'moment';
 
 export class DoctorProfileSettingsComponent implements OnInit {
 
-  formData: any = {}
+  formData: any = {
+    profileImage:{src:''},
+    id:'',
+    username:'',
+    email:'',
+    firstName:'',
+    lastName:'',
+    phoneNo:'',
+    gender:'',
+    dob:'',
+    biography:'',
+    clinicName:'',
+    clinicAddress:'',
+    clinicImages:[],
+    education:[],
+    experience:[],
+    awards:[],
+    memberships:[],
+    registrations:[]
+  }
   isLoading: boolean;
 
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
@@ -41,48 +60,7 @@ export class DoctorProfileSettingsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.formData['clinicImages'] = [];
-
-    this.formData['education'] = [{
-      degree: '',
-      college: '',
-      yearOfCompletion: ''
-    }];
-
-    this.formData['experience'] = [
-      {
-        hospitalName: '',
-        from: '',
-        to: '',
-        designation: ''
-      },
-      {
-        hospitalName: '',
-        from: '',
-        to: '',
-        designation: ''
-      }
-
-    ]
-
-    this.formData['awards'] = [{
-      award: '',
-      year: ''
-    }]
-
-    this.formData['memberships'] = [{
-      name: '',
-
-    }]
-
-    this.formData['registrations'] = [{
-      registration: '',
-      year: ''
-    }]
-    this.formData['profileImage'] = {
-      src: ''
-    }
-
+   
 
 
 
