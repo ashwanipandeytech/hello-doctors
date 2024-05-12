@@ -275,7 +275,7 @@
                             </div>
                         </div>
                         <div class="add-more">
-                            <a href="javascript:void(0);" class="add-education"><i class="fa fa-plus-circle"></i> Add More</a>
+                            <a href="javascript:void(0);" class="add-education" (click)="addMore('education')"><i class="fa fa-plus-circle"></i> Add More</a>
                         </div>
                     </div>
                 </div>
@@ -336,7 +336,7 @@
                             </div>
                         </div>
                         <div class="add-more">
-                            <a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+                            <a href="javascript:void(0);" class="add-experience" (click)="addMore('experience')"><i class="fa fa-plus-circle"></i> Add More</a>
                         </div>
                     </div>
                 </div>
@@ -371,7 +371,7 @@
                             </div>
                         </div>
                         <div class="add-more">
-                            <a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Add More</a>
+                            <a href="javascript:void(0);" class="add-award" (click)="addMore('awards')"><i class="fa fa-plus-circle"></i> Add More</a>
                         </div>
                     </div>
                 </div>
@@ -386,13 +386,13 @@
                                 <div class="col-12 col-md-10 col-lg-5">
                                     <div class="mb-3">
                                         <label class="mb-2">Memberships</label>
-                                        <input type="text" class="form-control" *ngFor="let item of formData['registrations']" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}">
+                                        <input type="text" class="form-control" *ngFor="let item of formData['memberships']" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}">
                                     </div> 
                                 </div>
                             </div>
                         </div>
                         <div class="add-more">
-                            <a href="javascript:void(0);" class="add-membership"><i class="fa fa-plus-circle"></i> Add More</a>
+                            <a href="javascript:void(0);" class="add-membership" (click)="addMore('memberships')"><i class="fa fa-plus-circle"></i> Add More</a>
                         </div>
                     </div>
                 </div>
@@ -426,7 +426,7 @@
                             </div>
                         </div>
                         <div class="add-more">
-                            <a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add More</a>
+                            <a href="javascript:void(0);" class="add-reg"  (click)="addMore('registrations')"><i class="fa fa-plus-circle"></i> Add More</a>
                         </div>
                     </div>
                 </div>

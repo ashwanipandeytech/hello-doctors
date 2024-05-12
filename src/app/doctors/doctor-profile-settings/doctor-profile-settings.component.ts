@@ -25,7 +25,7 @@ export class DoctorProfileSettingsComponent implements OnInit {
     lastName:'',
     phoneNo:'',
     gender:'',
-    dob:'',
+    dob:new Date(),
     biography:'',
     clinicName:'',
     clinicAddress:'',
@@ -60,7 +60,11 @@ export class DoctorProfileSettingsComponent implements OnInit {
 
   ngOnInit(): void {
 
-   
+   this.addMore('education')
+   this.addMore('experience')
+   this.addMore('awards')
+   this.addMore('memberships')
+   this.addMore('registrations')
 
 
 
@@ -249,6 +253,29 @@ export class DoctorProfileSettingsComponent implements OnInit {
 
 
 
+  }
+  addMore(type){
+    let data;
+    if(type=='education'){
+      data={degree:'',college:''}
+
+    }
+    else if(type=='experience'){
+      data={hospitalName:'',from:new Date(),to:new Date()}
+      
+    }
+    else if(type=='awards'){
+      data={award:'',year:new Date()}
+      
+    }
+   else  if(type=='memberships'){
+    data={name:''}
+    }
+   else  if(type=='registrations'){
+    data={registration:'',year:new Date()}
+      
+    }
+    this.formData[type].push(data)
   }
 
 
