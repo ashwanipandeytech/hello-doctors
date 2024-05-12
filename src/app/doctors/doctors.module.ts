@@ -15,7 +15,12 @@ import { SocialMediaComponent } from './social-media/social-media.component';
 import { DoctorChangePasswordComponent } from './doctor-change-password/doctor-change-password.component';
 import { DoctorAccountComponent } from './doctor-account/doctor-account.component';
 import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
-
+import { SharedModule } from '../shared/shared.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import {provideNativeDateAdapter} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,15 @@ import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatIconModule,
     DoctorsRoutingModule
+  ],
+  providers:[
+    provideNativeDateAdapter(),
   ]
 })
 export class DoctorsModule { }

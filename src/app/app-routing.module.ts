@@ -22,7 +22,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'doctors',
+    path: 'doctor',
    
     loadChildren: () => import('./doctors/doctors.module').then(m => m.DoctorsModule),
 

@@ -9,7 +9,7 @@
                 <!-- /Profile Sidebar -->
             </div>
             
-            <div class="col-md-7 col-lg-8 col-xl-9">
+            <div class="col-md-7 col-lg-8 col-xl-9" *ngIf="formData">
 
                 <!-- Basic Information -->
                 <div class="card">
@@ -20,12 +20,12 @@
                                 <div class="mb-3">
                                     <div class="change-avatar">
                                         <div class="profile-img">
-                                            <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+                                            <img src="{{formData['profileImage'].src}}"  onerror="this.src='assets/images/NA.png'" alt="User Image">
                                         </div>
                                         <div class="upload-img">
                                             <div class="change-photo-btn">
                                                 <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                                <input type="file" class="upload">
+                                                <input type="file" class="upload" (change)="onFileSelected($event,'doctorprofile')">
                                             </div>
                                             <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                         </div>
@@ -35,37 +35,37 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Username <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" readonly>
+                                    <input type="text" class="form-control"   id="Username" disabled [(ngModel)]="formData.username" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Email <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" readonly>
+                                    <input type="email" class="form-control" disabled [(ngModel)]="formData.email" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">First Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.firstName" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Last Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.lastName" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Phone Number</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.phoneNo" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Gender</label>
-                                    <select class="form-select form-control">
+                                    <select class="form-select form-control" [(ngModel)]="formData.gender" [ngModelOptions]="{standalone: true}" required>
                                         <option>Select</option>
                                         <option>Male</option>
                                         <option>Female</option>
@@ -75,7 +75,7 @@
                             <div class="col-md-6">
                                 <div class="mb-0">
                                     <label class="mb-2">Date of Birth</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.dob" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                         <h4 class="card-title">About Me</h4>
                         <div class="mb-0">
                             <label class="mb-2">Biography</label>
-                            <textarea class="form-control" rows="5"></textarea>
+                            <textarea class="form-control" rows="5" [(ngModel)]="formData.biography" [ngModelOptions]="{standalone: true}" ></textarea>
                         </div>
                     </div>
                 </div>
@@ -103,29 +103,28 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Clinic Name</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.clinicName" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Clinic Address</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.clinicAddress" [ngModelOptions]="{standalone: true}" required>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" *ngIf="formData['clinicImages']">
                                 <div class="mb-3">
                                     <label class="mb-2">Clinic Images</label>
-                                    <form action="#" class="dropzone"></form>
+                                    <div  class="dropzone"  style="height: 200px;"  [ngClass]="{'dragover': isDragOver}"  (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+                                    Drop Images</div>
+                                    <input type="file" #fileInput style="visibility:hidden" (change)="onFileSelected($event,'clinicImages')">
                                 </div>
-                                <div class="upload-wrap">
-                                    <div class="upload-images">
-                                        <img src="assets/img/features/feature-01.jpg" alt="Upload Image">
+                                <div class="upload-wrap" >
+                                    <div class="upload-images" *ngFor="let item of formData['clinicImages']">
+                                        <img src="{{item.src}}" alt="Clinic Image"  onerror="this.src='assets/images/NA.png'">
                                         <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
                                     </div>
-                                    <div class="upload-images">
-                                        <img src="assets/img/features/feature-02.jpg" alt="Upload Image">
-                                        <a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -141,38 +140,38 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="mb-2">Address Line 1</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" [(ngModel)]="formData.contactAddrLine1" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">Address Line 2</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control"  [(ngModel)]="formData.contactAddrLine2" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">City</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control"  [(ngModel)]="formData.contactAddrCity" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">State / Province</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control"  [(ngModel)]="formData.contactAddrState" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">Country</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control"  [(ngModel)]="formData.contactAddrCountry" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">Postal Code</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control"  [(ngModel)]="formData.contactAddrZip" [ngModelOptions]="{standalone: true}" >
                                 </div>
                             </div>
                         </div>
@@ -188,11 +187,11 @@
                         <div class="mb-0">
                             <div id="pricing_select">
                                 <div class="custom-control form-check custom-control-inline">
-                                    <input type="radio" id="price_free" name="rating_option" class="form-check-input" value="price_free" checked>
+                                    <input type="radio" id="price_free" name="rating_option"  [(ngModel)]="formData.pricing" [ngModelOptions]="{standalone: true}"  class="form-check-input" value="price_free" checked>
                                     <label class="form-check-label" for="price_free">Free</label>
                                 </div>
                                 <div class="custom-control form-check custom-control-inline">
-                                    <input type="radio" id="price_custom" name="rating_option" value="custom_price" class="form-check-input">
+                                    <input type="radio" id="price_custom" name="rating_option"  [(ngModel)]="formData.pricing" [ngModelOptions]="{standalone: true}"  value="custom_price" class="form-check-input">
                                     <label class="form-check-label" for="price_custom">Custom Price (per hour)</label>
                                 </div>
                             </div>
@@ -216,12 +215,12 @@
                         <h4 class="card-title">Services and Specialization</h4>
                         <div class="mb-3">
                             <label class="mb-2">Services</label>
-                            <input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
+                            <input type="text" data-role="tagsinput" class="input-tags form-control" [(ngModel)]="formData.services" [ngModelOptions]="{standalone: true}"  placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
                             <small class="form-text text-muted">Note : Type & Press enter to add new services</small>
                         </div> 
                         <div class="mb-0">
                             <label class="mb-2">Specialization </label>
-                            <input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist">
+                            <input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization"  [(ngModel)]="formData.specialization" [ngModelOptions]="{standalone: true}"  name="specialist" value="Children Care,Dental Care" id="specialist">
                             <small class="form-text text-muted">Note : Type & Press  enter to add new specialization</small>
                         </div> 
                     </div>              
@@ -229,29 +228,38 @@
                 <!-- /Services and Specialization -->
                 
                 <!-- Education -->
-                <div class="card">
+                <div class="card" *ngIf="formData['education']">
                     <div class="card-body">
                         <h4 class="card-title">Education</h4>
                         <div class="education-info">
                             <div class="row education-cont">
                                 <div class="col-12 col-md-10 col-lg-11">
-                                    <div class="row">
+                                    <div class="row" *ngFor="let item of formData['education']">
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
                                                 <label class="mb-2">Degree</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control"  [(ngModel)]="item.degree" [ngModelOptions]="{standalone: true}" >
                                             </div> 
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
                                                 <label class="mb-2">College/Institute</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control"  [(ngModel)]="item.college" [ngModelOptions]="{standalone: true}" >
                                             </div> 
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
-                                                <label class="mb-2">Year of Completion</label>
-                                                <input type="text" class="form-control">
+                                                <!-- <label class="mb-2">Year of Completion</label>
+                                                <input type="text" class="form-control"  [(ngModel)]="item.yearOfCompletion" [ngModelOptions]="{standalone: true}" >
+                                            -->
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>Year of Completion</mat-label>
+                                                    <input matInput [matDatepicker]="picker" [(ngModel)]="item.yearOfCompletion"  [ngModelOptions]="{standalone: true}">
+                                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                                    <mat-datepicker #picker></mat-datepicker>
+                                                  </mat-form-field>
+                                           
                                             </div> 
                                         </div>
                                     </div>
@@ -266,35 +274,53 @@
                 <!-- /Education -->
             
                 <!-- Experience -->
-                <div class="card">
+                <div class="card" *ngIf="formData['experience']">
                     <div class="card-body">
                         <h4 class="card-title">Experience</h4>
                         <div class="experience-info">
                             <div class="row experience-cont">
                                 <div class="col-12 col-md-10 col-lg-11">
-                                    <div class="row">
+                                    <div class="row" *ngFor="let item of formData['experience'];index as i;">
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
                                                 <label class="mb-2">Hospital Name</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" [(ngModel)]="item.hospitalName" [ngModelOptions]="{standalone: true}" >
                                             </div> 
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
-                                                <label class="mb-2">From</label>
-                                                <input type="text" class="form-control">
+                                                <!-- <label class="mb-2">From</label>
+                                                <input type="text" class="form-control" [(ngModel)]="item.from" [ngModelOptions]="{standalone: true}">
+                                             -->
+                                                <mat-form-field appearance="outline">
+                                                    <mat-label>From</mat-label>
+                                                    <input matInput [matDatepicker]="pickerfrom" [(ngModel)]="item.from"  [ngModelOptions]="{standalone: true}">
+                                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                                    <mat-datepicker-toggle matIconSuffix [for]="pickerfrom"></mat-datepicker-toggle>
+                                                    <mat-datepicker #pickerfrom></mat-datepicker>
+                                                  </mat-form-field>
                                             </div> 
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
-                                                <label class="mb-2">To</label>
-                                                <input type="text" class="form-control">
+                                                <!-- <label class="mb-2">To</label>
+                                                <input type="text" class="form-control" [(ngModel)]="item.to" [ngModelOptions]="{standalone: true}">
+                                             -->
+
+                                             <mat-form-field appearance="outline">
+                                                <mat-label>To</mat-label>
+                                                <input matInput [matDatepicker]="pickerto" [(ngModel)]="item.to"  [ngModelOptions]="{standalone: true}">
+                                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                                <mat-datepicker-toggle matIconSuffix [for]="pickerto"></mat-datepicker-toggle>
+                                                <mat-datepicker #pickerto></mat-datepicker>
+                                              </mat-form-field> 
+                                            
                                             </div> 
                                         </div>
                                         <div class="col-12 col-md-6 col-lg-4">
                                             <div class="mb-3">
                                                 <label class="mb-2">Designation</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" [(ngModel)]="item.designation" [ngModelOptions]="{standalone: true}">
                                             </div> 
                                         </div>
                                     </div>
@@ -309,21 +335,29 @@
                 <!-- /Experience -->
                 
                 <!-- Awards -->
-                <div class="card">
+                <div class="card" *ngIf="formData['awards']">
                     <div class="card-body">
                         <h4 class="card-title">Awards</h4>
                         <div class="awards-info">
-                            <div class="row awards-cont">
+                            <div class="row awards-cont" *ngFor="let item of formData['awards'];index as i;">
                                 <div class="col-12 col-md-5">
                                     <div class="mb-3">
                                         <label class="mb-2">Awards</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="item.award" [ngModelOptions]="{standalone: true}">
                                     </div> 
                                 </div>
                                 <div class="col-12 col-md-5">
                                     <div class="mb-3">
-                                        <label class="mb-2">Year</label>
-                                        <input type="text" class="form-control">
+                                        <!-- <label class="mb-2">Year</label>
+                                        <input type="text" class="form-control" [(ngModel)]="item.year" [ngModelOptions]="{standalone: true}"> -->
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Choose a date</mat-label>
+                                            <input matInput [matDatepicker]="awardpicker" [(ngModel)]="item.year"  [ngModelOptions]="{standalone: true}">
+                                            <mat-hint>MM/DD/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matIconSuffix [for]="awardpicker"></mat-datepicker-toggle>
+                                            <mat-datepicker #awardpicker></mat-datepicker>
+                                          </mat-form-field>
+                                    
                                     </div> 
                                 </div>
                             </div>
@@ -336,7 +370,7 @@
                 <!-- /Awards -->
                 
                 <!-- Memberships -->
-                <div class="card">
+                <div class="card" *ngIf="formData['memberships']">
                     <div class="card-body">
                         <h4 class="card-title">Memberships</h4>
                         <div class="membership-info">
@@ -344,7 +378,7 @@
                                 <div class="col-12 col-md-10 col-lg-5">
                                     <div class="mb-3">
                                         <label class="mb-2">Memberships</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" *ngFor="let item of formData['registrations']" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}">
                                     </div> 
                                 </div>
                             </div>
@@ -357,21 +391,28 @@
                 <!-- /Memberships -->
                 
                 <!-- Registrations -->
-                <div class="card">
+                <div class="card" *ngIf="formData['registrations']">
                     <div class="card-body">
                         <h4 class="card-title">Registrations</h4>
                         <div class="registrations-info">
-                            <div class="row reg-cont">
+                            <div class="row reg-cont" *ngFor="let item of formData['registrations'];index as i;">
                                 <div class="col-12 col-md-5">
                                     <div class="mb-3">
                                         <label class="mb-2">Registrations</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" [(ngModel)]="item.registration" [ngModelOptions]="{standalone: true}">
                                     </div> 
                                 </div>
                                 <div class="col-12 col-md-5">
-                                    <div class="mb-3">
-                                        <label class="mb-2">Year</label>
-                                        <input type="text" class="form-control">
+                                    <div >
+                                        <!-- <label class="mb-2">Year</label> -->
+                                        <!-- <input type="text" class="form-control" [(ngModel)]="item.year" [ngModelOptions]="{standalone: true}"> -->
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Choose a date</mat-label>
+                                            <input matInput [matDatepicker]="registrationpicker" [(ngModel)]="item.year"  [ngModelOptions]="{standalone: true}">
+                                            <mat-hint>MM/DD/YYYY</mat-hint>
+                                            <mat-datepicker-toggle matIconSuffix [for]="registrationpicker"></mat-datepicker-toggle>
+                                            <mat-datepicker #registrationpicker></mat-datepicker>
+                                          </mat-form-field>
                                     </div> 
                                 </div>
                             </div>
@@ -384,7 +425,7 @@
                 <!-- /Registrations -->
                 
                 <div class="submit-section submit-btn-bottom">
-                    <button type="submit" class="btn btn-primary prime-btn">Save Changes</button>
+                    <button type="button" class="btn btn-primary prime-btn" (click)="submitForm()">Save Changes</button>
                 </div>
 
             </div>

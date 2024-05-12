@@ -5,6 +5,7 @@ import { Globals } from '@src/app/shared/globals';
 import { DataService } from '@src/app/services/data-service.service'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { CommonService } from '../services/commonservice';
 
 @Component({
   selector: 'app-signin',
@@ -20,15 +21,14 @@ export class SigninComponent implements OnInit {
   isLoading: boolean;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(private router: Router, private dataService: DataService, private toastr: ToastrService) {
+  constructor(private router: Router, private dataService: DataService, private toastr: ToastrService,private commonservice:CommonService) {
     
   }
 
   ngOnInit(): void {
 
 
-  }
-  ;
+  };
   submitForm() {
     let requestPayload = {
       name: this.name,
@@ -61,20 +61,34 @@ export class SigninComponent implements OnInit {
     this.dataService.callApi(requestPayload, 'login',true)
     .pipe(takeUntil(this.destroyed$))
     .subscribe(
-      (data) => {
+      (data:any) => {
         this.isLoading = false;
   
         if (data.success) {
-         // this.router.navigate(['/login']);
+          if(data.data){           
+            localStorage.setItem('user', JSON.stringify(data.data));
+            this.toastr.success('Logged in Successfully!');
+            this.commonservice.emitUser(data.data)
+
+          }
+          if(data.data.userType=='P'){
+             this.router.navigate(['/doctor/'+data.data.id]);
+
+          }else if(data.data.userType=='D'){
+            // this.router.navigate(['/login']);
+          }
+        
+         
         } else {
           this.toastr.error('Error in registration');
         }
       },
-      (error) => {
-       
-        console.error('API Error:', error);
-        this.toastr.error('An error occurred while processing your request.');
-        this.isLoading = false; // Set isLoading to false to handle loading state
+      (error:any) => {
+        const errorDetails = error.error;
+     this.isLoading=false
+      //  console.error('API Error:', error,errorDetails.message);
+        this.toastr.error(errorDetails.message);
+      
       }
     );
   

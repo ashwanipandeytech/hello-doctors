@@ -11,6 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatInputModule } from '@angular/material/input';
+// import {provideNativeDateAdapter} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -29,9 +35,17 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+
+    // MatFormFieldModule,
+    // MatInputModule,
+    // MatDatepickerModule,
+    // MatIconModule,
   ],
   providers: [
-    provideClientHydration()
+    // provideNativeDateAdapter(),
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    
   ],
   bootstrap: [AppComponent]
 })

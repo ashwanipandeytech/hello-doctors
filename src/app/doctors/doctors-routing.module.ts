@@ -16,40 +16,40 @@ import { InvoiceViewComponent } from './invoice-view/invoice-view.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: DoctorsComponent
   }, {
-    path: 'account',
+    path: 'account/:id',
     component: DoctorAccountComponent
   }, {
-    path: 'appointments',
+    path: 'appointments/:id',
     component: AppointmentsComponent
   }, {
-    path: 'available-timing',
+    path: 'available-timing/:id',
     component: AvailableTimingsComponent
   }, {
-    path: 'profile-settings',
+    path: 'profile-settings/:id',
     component: DoctorProfileSettingsComponent
   }, {
-    path: 'invoices',
+    path: 'invoices/:id',
     component: InvoicesComponent
   }, {
-    path: 'invoice-view',
+    path: 'invoice-view/:id',
     component: InvoiceViewComponent
   }, {
-    path: 'my-patients',
+    path: 'my-patients/:id',
     component: MyPatientsComponent
   }, {
-    path: 'reviews',
+    path: 'reviews/:id',
     component: ReviewsComponent
   }, {
-    path: 'schedule-timings',
+    path: 'schedule-timings/:id',
     component: ScheduleTimingsComponent
   }, {
-    path: 'social-media',
+    path: 'social-media/:id',
     component: SocialMediaComponent
   }, {
-    path: 'change-password',
+    path: 'change-password/:id',
     component: DoctorChangePasswordComponent
   }
 ];
